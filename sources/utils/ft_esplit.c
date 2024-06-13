@@ -23,7 +23,7 @@ static char	**free_array(char **ptr, int i)
 	return (0);
 }
 
-static int	ft_count_words(char *str, char c)
+static int	count_words(char *str, char c)
 {
 	int	i;
 	int	count;
@@ -44,14 +44,14 @@ static int	ft_count_words(char *str, char c)
 	return (count);
 }
 
-static char	*ft_putword(char *word, char *s, int i, int word_len)
+static char	*put_word(char *word, char *s, int start, int word_len)
 {
 	int	j;
 
 	j = 0;
 	while (word_len > 0)
 	{
-		word[j] = s[i - word_len];
+		word[j] = s[start - word_len];
 		j++;
 		word_len--;
 	}
@@ -59,46 +59,55 @@ static char	*ft_putword(char *word, char *s, int i, int word_len)
 	return (word);
 }
 
-static char	**ft_split_words(char *s, char c, char **s2, int num_words)
+static char	**split_words(char *s, char c, char **result, int num_words)
 {
-	int	i;
-	int	word;
-	int	word_len;
+	static int	tracker = 0;
+	int			word;
+	int			word_len;
+	int			start;
 
-	i = 0;
 	word = 0;
-	word_len = 0;
 	while (word < num_words)
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		while (s[i] && s[i] != c)
+        word_len = 0;
+		while (s[tracker] && s[tracker] == c)
+			tracker++;
+		start = tracker;
+		while (s[tracker] && s[tracker] != c)
 		{
-			i++;
+			tracker++;
 			word_len++;
 		}
-		s2[word] = (char *)malloc(sizeof(char) * (word_len + 1));
-		if (!s2[word])
-			return (free_array(s2, word));
-		ft_putword(s2[word], s, i, word_len);
-		word_len = 0;
+		result[word] = (char *)malloc((word_len + 1) * sizeof(char));
+		if (!result[word])
+			return (free_array(result, word));
+		put_word(result[word], s, start + word_len, word_len);
 		word++;
 	}
-	s2[word] = 0;
-	return (s2);
+	result[word] = '\0';
+	return (result);
 }
 
 char	**ft_esplit(char *s, char c)
 {
-	char			**s2;
-	unsigned int	num_words;
+	int		words_count;
+	char	**result;
+	int		i;
 
-	if (!s)
-		return (0);
-	num_words = ft_count_words(s, c);
-	s2 = (char **)malloc(sizeof(char *) * (num_words + 1));
-	if (!s2)
-		return (0);
-	s2 = ft_split_words(s, c, s2, num_words);
-	return (s2);
+	i = 0;
+	words_count = count_words(s, c);
+	if (!words_count)
+		exit(1);
+	result = (char **)malloc((words_count + 2) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	if (s[0] == c)
+	{
+		result[i] = (char *)malloc(sizeof(char));
+		if (!result[i])
+			return (NULL);
+		result[i++][0] = '\0';
+	}
+	result = split_words(s, c, result, words_count);
+	return (result);
 }
