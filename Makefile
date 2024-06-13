@@ -1,7 +1,8 @@
 OBJS_PS = $(SRCS_PS:.c=.o)
-SRCS_PS = $(addprefix $(SRC_DIR)/, \
-	operations/push.c operations/swap.c operations/rotate.c operations/r_rotate.c operations/op_utils.c \
-	main.c \
+SRCS_PS = $(addprefix $(SRC_DIR), \
+	core/calc_a.c core/sort_three.c core/turk_algo.c \
+	operations/push.c operations/swap.c operations/rotate.c operations/r_rotate.c \
+	utils/init.c utils/utils.c utils/utils2.c utils/error.c utils/ft_esplit.c \
 )
 
 SRC_DIR	= ./sources/

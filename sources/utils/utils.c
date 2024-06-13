@@ -13,7 +13,7 @@ bool	is_sorted(t_stack *stack)
 	return (true);
 }
 
-t_stack	*biggest(t_stack *stack)
+t_stack	*ft_biggest(t_stack *stack)
 {
 	long			biggest;
 	t_stack	*b_index;
@@ -33,7 +33,7 @@ t_stack	*biggest(t_stack *stack)
 	return (b_index);
 }
 
-t_stack	*smallest(t_stack *stack)
+t_stack	*ft_smallest(t_stack *stack)
 {
 	long			smallest;
 	t_stack	*s_index;

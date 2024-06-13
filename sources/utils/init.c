@@ -16,7 +16,7 @@ void	init_a(t_stack **a, char **argv)
 			error_msg(a);
 		if (duplicate_check(*a, (int)nbr) != true)
 			error_msg(a); 
-		append_node(a, (int)nbr);
+		append_stack(a, (int)nbr);
 		i++;
 	}
 }

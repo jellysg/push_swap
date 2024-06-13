@@ -2,14 +2,15 @@
 
 void    push_swap(t_stack *a, t_stack *b)
 {
+    a->size = stack_size(a);
 	if (is_sorted(a) == false)
 	{
-		if (stack_size(a) == 2)
+		if (a->size == 2)
 			ft_sa(&a);
-		else if (stack_size(a) == 3)
+		else if (a->size == 3)
 			sort_three(&a);
 		else
-			sort_stacks(&a, &b);
+			turk_algo(&a, &b);
 	}
 }
 
