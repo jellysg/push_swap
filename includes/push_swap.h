@@ -16,10 +16,21 @@ typedef struct s_stack
 }   t_stack;
 
 // ./core/
-// calc_a.c (5/5 functions)
-void	position_index(t_stack *stack);
-void	cheapest_cost(t_stack *stack);
+// calc_a.c (4/5 functions)
+void	link_a(t_stack *a, t_stack *b);
+void	cost_a(t_stack *a, t_stack *b);
+void	cheapest_a(t_stack *stack);
 void	calc_a(t_stack *a, t_stack *b);
+// calc_b.c (4/5 functions)
+void	link_b(t_stack *a, t_stack *b);
+void	cost_b(t_stack *a, t_stack *b);
+void	cheapest_b(t_stack *stack);
+void	calc_b(t_stack *a, t_stack *b);
+// move_sort.c (5/5 functions)
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
+void	rrotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
+void	move_to(t_stack **a, t_stack **b, char dest);
+void	asc_sort(t_stack **a);
 // sort_three.c (1/5 functions)
 void	sort_three(t_stack **a);
 // turk_algo.c (4/5 functions)
@@ -27,6 +38,10 @@ void    start_a(t_stack **a, t_stack **b);
 void    end_b(t_stack **a, t_stack **b);
 void    init_push(t_stack **a, t_stack **b);
 void	turk_algo(t_stack **a, t_stack **b);
+// main.c (3/5 functions)
+void    push_swap(t_stack *a, t_stack *b);
+bool    arg_check(int argc, char **argv);
+int	main(int argc, char **argv);
 
 // ./operations/
 // push.c (3/5 functions)
@@ -57,11 +72,15 @@ bool	syntax_check(char *str);
 bool	duplicate_check(t_stack *a, int nbr);
 void	free_stack(t_stack **stack);
 void	error_msg(t_stack **a);
-// utils.c (3/5 functions)
+// utils.c (5/5 functions)
+t_stack	*get_cheapest(t_stack *stack);
+void	update_position(t_stack *stack);
 bool	is_sorted(t_stack *stack);
 t_stack	*ft_biggest(t_stack *stack);
 t_stack	*ft_smallest(t_stack *stack);
-// utils2.c (3/5 functions)
+// utils2.c (5/5 functions)
+void	stack_add_back(t_stack **stack, t_stack *new);
+void	append_stack(t_stack **stack, int n);
 t_stack	*stack_last(t_stack *stack);
 t_stack	*stack_before_last(t_stack *stack);
 int	stack_size(t_stack	*stack);

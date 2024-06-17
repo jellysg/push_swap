@@ -1,29 +1,9 @@
 #include "./../includes/push_swap.h"
 
-void	position_index(t_stack *stack)
-{
-	int	i;
-	int	middle;
-
-	i = 0;
-	if (!stack)
-		return ;
-	middle = stack_size(stack) / 2;
-	{
-		stack->i = i;
-		if (i <= middle)
-			stack->top_half = true;
-		else
-			stack->top_half = false;
-		stack = stack->next;
-		i++;
-	}
-}
-
-static void	target_a(t_stack *a, t_stack *b)
+void	link_a(t_stack *a, t_stack *b)
 {
 	t_stack	*current_b;
-	t_stack	*target_node;
+	t_stack	*link;
 	long			nearest_lower;
 
 	while (a)
@@ -35,19 +15,19 @@ static void	target_a(t_stack *a, t_stack *b)
 			if (current_b->num < a->num && current_b->num > nearest_lower)
 			{
 				nearest_lower = current_b->num;
-				target_node = current_b;
+				link = current_b;
 			}
 			current_b = current_b->next;
 		}
 		if (nearest_lower == LONG_MIN)
 			a->target = ft_biggest(b);
 		else
-			a->target = target_node;
+			a->target = link;
 		a = a->next;
 	}
 }
 
-static void	cost_a(t_stack *a, t_stack *b)
+void	cost_a(t_stack *a, t_stack *b)
 {
 	int	size_a;
 	int	size_b;
@@ -67,19 +47,19 @@ static void	cost_a(t_stack *a, t_stack *b)
 	}
 }
 
-void	cheapest_cost(t_stack *stack)
+void	cheapest_a(t_stack *stack)
 {
-	long			cheapest_value;
+	long			cheapest;
 	t_stack	*cheapest_node;
 
 	if (!stack)
 		return ;
-	cheapest_value = LONG_MAX;
+	cheapest = LONG_MAX;
 	while (stack)
 	{
-		if (stack->cost < cheapest_value)
+		if (cheapest > stack->cost)
 		{
-			cheapest_value = stack->cost;
+			cheapest = stack->cost;
 			cheapest_node = stack;
 		}
 		stack = stack->next;
@@ -89,9 +69,9 @@ void	cheapest_cost(t_stack *stack)
 
 void	calc_a(t_stack *a, t_stack *b)
 {
-	position_index(a);
-	position_index(b);
-	target_a(a, b);
+	update_position(a);
+	update_position(b);
+	link_a(a, b);
 	cost_a(a, b);
-	cheapest_cost(a);
+	cheapest_a(a);
 }

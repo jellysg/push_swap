@@ -1,6 +1,6 @@
 OBJS_PS = $(SRCS_PS:.c=.o)
 SRCS_PS = $(addprefix $(SRC_DIR), \
-	core/calc_a.c core/sort_three.c core/turk_algo.c \
+	core/main.c core/calc_a.c core/calc_b.c core/sort_three.c core/turk_algo.c core/move_sort.c \
 	operations/push.c operations/swap.c operations/rotate.c operations/r_rotate.c \
 	utils/init.c utils/utils.c utils/utils2.c utils/error.c utils/ft_esplit.c \
 )
