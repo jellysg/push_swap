@@ -27,10 +27,9 @@ void	init_a(t_stack **a, char **argv)
 	int		i;
 
 	i = 0;
-    argv = ft_esplit(argv[1], ' ');
 	while (argv[i])
 	{
-		if (syntax_check(argv[i]) != true)
+		if (syntax_check(argv[i]) == false)
 			error_msg(a);
 		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)

@@ -16,9 +16,9 @@ void    push_swap(t_stack *a, t_stack *b)
 
 bool    arg_check(int argc, char **argv)
 {
-    if (argc == 2 && argv[1][0])
-        return (true);
-    return (false);
+    if (argc == 1 || (argc == 2 && !argv[1][0]))
+        return (false);
+    return (true);
 }
 
 int	main(int argc, char **argv)
@@ -28,9 +28,10 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (arg_check(argc, argv) != true)
+	if (arg_check(argc, argv) == false)
         return (1);
-	argv = ft_esplit(argv[1], ' ');
+    else if (argc == 2)
+	    argv = ft_split(argv[1], ' ');
 	init_a(&a, argv + 1);
 	push_swap(a, b);
 	free_stack(&a);
