@@ -5,15 +5,15 @@
 
 typedef struct s_stack
 {
-    int num;
-    int i;
-    int cost;
-    int size;
-    bool top_half;
-    bool cheapest;
-    struct s_stack  *target;
-    struct s_stack  *next;
-}   t_stack;
+	int num;
+	int i;
+	int cost;
+	int size;
+	bool top_half;
+	bool cheapest;
+	struct s_stack	*target;
+	struct s_stack	*next;
+}	t_stack;
 
 // ./core/
 // calc_a.c (4/5 functions)
@@ -23,8 +23,6 @@ void	cheapest_a(t_stack *stack);
 void	calc_a(t_stack *a, t_stack *b);
 // calc_b.c (4/5 functions)
 void	link_b(t_stack *a, t_stack *b);
-void	cost_b(t_stack *a, t_stack *b);
-void	cheapest_b(t_stack *stack);
 void	calc_b(t_stack *a, t_stack *b);
 // move_sort.c (5/5 functions)
 void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
@@ -71,7 +69,7 @@ void	init_a(t_stack **a, char **argv);
 bool	syntax_check(char *str);
 bool	duplicate_check(t_stack *a, int nbr);
 void	free_stack(t_stack **stack);
-void	error_msg(t_stack **a);
+void	error_msg(t_stack **a, char **array);
 // utils.c (5/5 functions)
 t_stack	*get_cheapest(t_stack *stack);
 void	update_position(t_stack *stack);

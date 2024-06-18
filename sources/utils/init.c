@@ -3,40 +3,46 @@
 static long	ft_atol(const char *str)
 {
 	long	result;
-	int		sign;
+	int	    sign;
     int		i;
 
 	result = 0;
-	sign = 1; 
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	sign = 1;
+    i = 0;
+	while (str[i] == ' ')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
+    {
+        if (str[i] == '-')
+		    sign = -1;
 		i++;
-	}
+    }
 	while (ft_isdigit(str[i]))
-		result = result * 10 + (str[i++] - '0');
+    {
+		result = (result * 10) + (str[i] - '0');
+        i++;
+    }
 	return (result * sign);
 }
 
-void	init_a(t_stack **a, char **argv)
+void	init_a(t_stack **a, char **array)
 {
 	long	nbr;
+    int		num;
 	int		i;
 
 	i = 0;
-	while (argv[i])
+	while (array[i])
 	{
-		if (syntax_check(argv[i]) == false)
-			error_msg(a);
-		nbr = ft_atol(argv[i]);
+		if (syntax_check(array[i]) == false)
+			error_msg(a, array);
+		nbr = ft_atol(array[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_msg(a);
-		if (duplicate_check(*a, (int)nbr) != true)
-			error_msg(a); 
-		append_stack(a, (int)nbr);
+			error_msg(a, array);
+        num = nbr;
+		if (duplicate_check(*a, num) == true)
+			error_msg(a, array); 
+		append_stack(a, num);
 		i++;
 	}
 }

@@ -5,13 +5,14 @@ bool	syntax_check(char *str)
     int i;
 
     i = 0;
-	if (!(str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9')))
+	if (!(str[i] == '+' || str[i] == '-' || ft_isdigit(str[i]) == 1))
 		return (false);
-	if ((str[i] == '+' || str[i] == '-') && !(str[1] >= '0' && str[1] <= '9'))
+	if ((str[i] == '+' || str[i] == '-') && ft_isdigit(str[1]) == 0)
 		return (false);
+    i++;
 	while (str[i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
+		if (ft_isdigit(str[i]) == 0)
 			return (false);
         i++;
 	}
@@ -49,8 +50,9 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	error_msg(t_stack **a)
+void	error_msg(t_stack **a, char **array)
 {
+    free(array);
 	free_stack(a);
 	ft_printf("Error\n");
 	exit(1);

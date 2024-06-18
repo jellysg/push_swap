@@ -22,12 +22,10 @@ void	update_position(t_stack *stack)
 	if (!stack)
 		return ;
 	middle = stack_size(stack) / 2;
+    while (stack)
 	{
 		stack->i = i;
-		if (i <= middle)
-			stack->top_half = true;
-		else
-			stack->top_half = false;
+		stack->top_half = (i < middle);
 		stack = stack->next;
 		i++;
 	}

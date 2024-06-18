@@ -25,15 +25,17 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
+    char    **array;
 
 	a = NULL;
 	b = NULL;
 	if (arg_check(argc, argv) == false)
         return (1);
     else if (argc == 2)
-	    argv = ft_split(argv[1], ' ');
-	init_a(&a, argv + 1);
+	    array = ft_split(argv[1], ' ');
+	init_a(&a, array);
 	push_swap(a, b);
+    free(array);
 	free_stack(&a);
 	return (0);
 }

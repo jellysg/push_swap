@@ -2,12 +2,16 @@
 
 void    start_a(t_stack **a, t_stack **b)
 {
-    while ((*a)->size > 3 && !is_sorted(*a))
+    int size;
+
+    size = (*a)->size;
+    while (size > 3 && is_sorted(*a) == false)
 	{
 		calc_a(*a, *b);
 		move_to(a, b, 'b');
-        (*a)->size--;
+        size--;
 	}
+    (*a)->size = size;
 }
 
 void    end_b(t_stack **a, t_stack **b)
@@ -21,16 +25,18 @@ void    end_b(t_stack **a, t_stack **b)
 
 void    init_push(t_stack **a, t_stack **b)
 {
-	if ((*a)->size > 3 && !is_sorted(*a))
+	int	size;
+    int pushed;
+
+	size = (*a)->size;
+    pushed = 0;
+	while (size > 3 && pushed < 2 && is_sorted(*a) == false)
     {
 		ft_pb(a, b);
-        (*a)->size--;
+        size--;
+        pushed++;
     }
-	if ((*a)->size > 3 && !is_sorted(*a))
-    {
-		ft_pb(a, b);
-        (*a)->size--;
-    }
+    (*a)->size = size;
 }
 
 void	turk_algo(t_stack **a, t_stack **b)

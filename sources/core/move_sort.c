@@ -22,14 +22,14 @@ void	top_of_stack(t_stack **stack, t_stack *top_node, char select)
 	{
 		if (select == 'a')
 		{
-			if (top_node->top_half)
+			if (top_node->top_half == true)
 				ft_ra(stack);
 			else
 				ft_rra(stack);
 		}
 		else if (select == 'b')
 		{
-			if (top_node->top_half)
+			if (top_node->top_half == true)
 				ft_rb(stack);
 			else
 				ft_rrb(stack);
