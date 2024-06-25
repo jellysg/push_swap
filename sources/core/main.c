@@ -26,16 +26,23 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
     char    **array;
+    int i;
 
 	a = NULL;
 	b = NULL;
+    i = 0;
 	if (arg_check(argc, argv) == false)
         return (1);
     else if (argc == 2)
 	    array = ft_split(argv[1], ' ');
 	init_a(&a, array);
 	push_swap(a, b);
-    free(array);
+    while (array[i] != NULL)
+    {
+        free(array[i]);
+        i++;
+    }
+	free(array);
 	free_stack(&a);
 	return (0);
 }

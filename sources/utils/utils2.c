@@ -2,31 +2,29 @@
 
 void	stack_add_back(t_stack **stack, t_stack *new)
 {
-	t_stack	*n;
+	t_stack	*last;
 
+    new->next = NULL;
 	if (*stack)
 	{
-		n = stack_last(*stack);
-		n->next = new;
-		new->next = NULL;
+		last = stack_last(*stack);
+		last->next = new;
 	}
 	else
-	{
 		*stack = new;
-		(*stack)->next = NULL;
-	}
 }
 
 void	append_stack(t_stack **stack, int n)
 {
 	t_stack	*node;
 
-	if (!stack)
+	if (stack == NULL)
 		return ;
 	node = malloc(sizeof(t_stack));
-	if (!node)
+	if (node == NULL)
 		return ;
 	node->num = n;
+    node->next = NULL;
 	stack_add_back(stack, node);
 }
 

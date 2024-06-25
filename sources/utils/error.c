@@ -37,13 +37,13 @@ void	free_stack(t_stack **stack)
 	t_stack	*temp;
 	t_stack	*curr;
 
-	if (!stack)
+	if (!stack || !*stack)
 		return ;
 	curr = *stack;
 	while (curr)
 	{
 		temp = curr->next;
-		curr->num = 0;
+        curr->num = 0;
 		free(curr);
 		curr = temp;
 	}
@@ -52,8 +52,20 @@ void	free_stack(t_stack **stack)
 
 void	error_msg(t_stack **a, char **array)
 {
-    free(array);
-	free_stack(a);
+    int i;
+
+    i = 0;
+    if (array)
+    {
+        while (array[i] != NULL)
+        {
+            free(array[i]);
+            i++;
+        }
+        free(array);
+    }
+    if (a && *a)
+	    free_stack(a);
 	ft_printf("Error\n");
 	exit(1);
 }

@@ -37,9 +37,9 @@ void	init_a(t_stack **a, char **array)
 		if (syntax_check(array[i]) == false)
 			error_msg(a, array);
 		nbr = ft_atol(array[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
+		if (nbr < INT_MIN || nbr > INT_MAX)
 			error_msg(a, array);
-        num = nbr;
+        num = (int)nbr;
 		if (duplicate_check(*a, num) == true)
 			error_msg(a, array); 
 		append_stack(a, num);

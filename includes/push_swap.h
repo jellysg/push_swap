@@ -5,6 +5,7 @@
 
 typedef struct s_stack
 {
+	int	split_i;
 	int num;
 	int i;
 	int cost;
@@ -82,7 +83,5 @@ void	append_stack(t_stack **stack, int n);
 t_stack	*stack_last(t_stack *stack);
 t_stack	*stack_before_last(t_stack *stack);
 int	stack_size(t_stack	*stack);
-// ft_esplit.c (5/5 functions)
-char	**ft_esplit(char *s, char c);
 
 #endif
