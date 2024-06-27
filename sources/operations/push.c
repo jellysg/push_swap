@@ -6,20 +6,28 @@ void	push(t_stack **a, t_stack **b)
 
 	if (*a == NULL)
 		return ;
-	temp = (*a)->next;
-	(*a)->next = *b;
-	*b = *a;
-	*a = temp;
+	temp = *a;
+	*a = (*a)->next;
+	if (*b == NULL)
+	{
+		*b = temp;
+		temp->next = NULL;
+	}
+	else
+	{
+		temp->next = *b;
+		*b = temp;
+	}
 }
 
 /* eg push b
 a = 1 2 3 4
 b = 5 6 7 8
 
-temp = 2 3 4
-a = 1 5 6 7 8
-b = 1 5 6 7 8
+temp = 1 2 3 4
 a = 2 3 4
+temp = 1 5 6 7 8
+b = 1 5 6 7 8
 
 result
 a = 2 3 4

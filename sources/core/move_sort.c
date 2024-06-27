@@ -16,20 +16,20 @@ void	rrotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 	update_position(*b);
 }
 
-void	top_of_stack(t_stack **stack, t_stack *top_node, char select)
+void	top_of_stack(t_stack **stack, t_stack *cheapest, char selected)
 {
-	while (*stack != top_node)
+	while (*stack != cheapest)
 	{
-		if (select == 'a')
+		if (selected == 'a')
 		{
-			if (top_node->top_half == true)
+			if (cheapest->top_half == true)
 				ft_ra(stack);
 			else
 				ft_rra(stack);
 		}
-		else if (select == 'b')
+		else if (selected == 'b')
 		{
-			if (top_node->top_half == true)
+			if (cheapest->top_half == true)
 				ft_rb(stack);
 			else
 				ft_rrb(stack);

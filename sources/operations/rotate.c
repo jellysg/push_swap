@@ -1,25 +1,31 @@
 #include "../includes/push_swap.h"
 
-void	rotate(t_stack **stack)
+void rotate(t_stack **stack)
 {
-	t_stack	*temp;
-	t_stack	*last;
+	t_stack *last;
+	t_stack *temp;
 
+	if (*stack == NULL)
+		return;
+	if ((*stack)->next == NULL)
+		return;
 	temp = *stack;
-	*stack = (*stack)->next;
 	last = stack_last(*stack);
-	temp->next = NULL;
+	*stack = temp->next;
 	last->next = temp;
+	temp->next = NULL;
 }
 
 /* eg rotate a
-a = 1 2 3 4
+a = 4 1 2 3
 
-temp = 1 2 3 4
-a = 2 3 4
-last = 1 2 3 (4)
-temp = 1 NULL
-a = 2 3 4 1
+temp = 4 1 2 3
+last = 4 1 2 (3) = 3
+a = 1 2 3
+last = 3 4 1 2 3
+(now a = 1 2 3 4 1 2 3)
+temp = 4
+(now a = 1 2 3 4)
 */
 
 void	ft_ra(t_stack **a)

@@ -2,18 +2,18 @@ OBJS_PS = $(SRCS_PS:.c=.o)
 SRCS_PS = $(addprefix $(SRC_DIR), \
 	core/main.c core/calc_a.c core/calc_b.c core/sort_three.c core/turk_algo.c core/move_sort.c \
 	operations/push.c operations/swap.c operations/rotate.c operations/r_rotate.c \
-	utils/init.c utils/utils.c utils/utils2.c utils/error.c \
+	utils/init.c utils/logic_utils.c utils/stack_utils.c utils/error.c utils/ft_esplit.c \
 )
 
 SRC_DIR	= ./sources/
 INC_DIR	= ./includes/
-CC = gcc
+CC = cc
 MF = Makefile
 
 NAME = push_swap
 LIBFT_PATH = ./libft/libft.a
 PS_HEADER_FILE = $(INC_DIR)/push_swap.h
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 

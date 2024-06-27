@@ -25,7 +25,7 @@ static long	ft_atol(const char *str)
 	return (result * sign);
 }
 
-void	init_a(t_stack **a, char **array)
+void	init_a(t_stack **a, char **array, int argc)
 {
 	long	nbr;
     int		num;
@@ -35,13 +35,13 @@ void	init_a(t_stack **a, char **array)
 	while (array[i])
 	{
 		if (syntax_check(array[i]) == false)
-			error_msg(a, array);
+			error_msg(a, array, argc);
 		nbr = ft_atol(array[i]);
 		if (nbr < INT_MIN || nbr > INT_MAX)
-			error_msg(a, array);
+			error_msg(a, array, argc);
         num = (int)nbr;
 		if (duplicate_check(*a, num) == true)
-			error_msg(a, array); 
+			error_msg(a, array, argc); 
 		append_stack(a, num);
 		i++;
 	}

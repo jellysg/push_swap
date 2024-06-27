@@ -19,13 +19,16 @@ void	update_position(t_stack *stack)
 	int	middle;
 
 	i = 0;
-	if (!stack)
+	if (stack == NULL)
 		return ;
 	middle = stack_size(stack) / 2;
-    while (stack)
+    while (stack != NULL)
 	{
 		stack->i = i;
-		stack->top_half = (i < middle);
+		if (i <= middle)
+			stack->top_half = true;
+		else
+			stack->top_half = false;
 		stack = stack->next;
 		i++;
 	}

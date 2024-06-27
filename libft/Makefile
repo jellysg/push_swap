@@ -52,7 +52,7 @@ get_next_line.c get_next_line_utils.c \
 
 SRC_DIR	= .
 INC_DIR	= ./includes/
-CC = gcc
+CC = cc
 AR = ar
 MF = Makefile
 FLAGS = -Wall -Wextra -Werror

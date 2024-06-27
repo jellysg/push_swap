@@ -38,7 +38,7 @@ void    end_b(t_stack **a, t_stack **b);
 void    init_push(t_stack **a, t_stack **b);
 void	turk_algo(t_stack **a, t_stack **b);
 // main.c (3/5 functions)
-void    push_swap(t_stack *a, t_stack *b);
+void    push_swap(t_stack *a, t_stack *b, char** argv, int argc);
 bool    arg_check(int argc, char **argv);
 int	main(int argc, char **argv);
 
@@ -48,7 +48,7 @@ void	push(t_stack **a, t_stack **b);
 void	ft_pa(t_stack **a, t_stack **b);
 void	ft_pb(t_stack **a, t_stack **b);
 // swap.c (4/5 functions)
-void	swap(t_stack *stack);
+void	swap(t_stack **stack);
 void	ft_sa(t_stack **a);
 void	ft_sb(t_stack **b);
 void	ft_ss(t_stack **a, t_stack **b);
@@ -65,23 +65,28 @@ void	ft_rrr(t_stack **a, t_stack **b);
 
 // ./utils/
 // init.c (1/5 functions)
-void	init_a(t_stack **a, char **argv);
+void	init_a(t_stack **a, char **argv, int argc);
 // error.c (4/5 functions)
 bool	syntax_check(char *str);
 bool	duplicate_check(t_stack *a, int nbr);
 void	free_stack(t_stack **stack);
-void	error_msg(t_stack **a, char **array);
-// utils.c (5/5 functions)
+void	error_msg(t_stack **a, char **array, int argc);
+// logic_utils.c (5/5 functions)
 t_stack	*get_cheapest(t_stack *stack);
 void	update_position(t_stack *stack);
 bool	is_sorted(t_stack *stack);
 t_stack	*ft_biggest(t_stack *stack);
 t_stack	*ft_smallest(t_stack *stack);
-// utils2.c (5/5 functions)
-void	stack_add_back(t_stack **stack, t_stack *new);
-void	append_stack(t_stack **stack, int n);
+// stack_utils.c (4/5 functions)
+void	 append_stack(t_stack **stack, int value);
 t_stack	*stack_last(t_stack *stack);
 t_stack	*stack_before_last(t_stack *stack);
-int	stack_size(t_stack	*stack);
+int		stack_size(t_stack	*stack);
+// ft_esplit (5/5 functions)
+char	**free_array(char **ptr);
+int		count_words(char *str, char c);
+char	*put_word(char *word, char *s, int start, int word_len);
+char	**split_words(char *s, char c, char **result, int num_words);
+char	**ft_esplit(char *s, char c);
 
 #endif
